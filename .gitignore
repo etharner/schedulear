@@ -1,3 +1,6 @@
+.DS_Store
+*.pyc
+
 # Built application files
 *.apk
 *.ap_
