@@ -1,14 +1,16 @@
-import re, parser, json
+import re
+from sparser import parse
+import json
 from flask import request, url_for
 from flask_api import FlaskAPI, status, exceptions
 
 app = FlaskAPI(__name__)
-rd = parser.parse()
+rd = parse()
 
 def schedule_repr(key):
 	text = "{}"
 	if (key in rd):
-		text = json.dumps(rd[key])	
+		text = json.loads(json.dumps(rd['D738'], ensure_ascii=False).encode('utf8').decode('utf8'))
 	return {
 		'url': request.host_url.rstrip('/') + url_for('schedule', key=key),
 		'text': text

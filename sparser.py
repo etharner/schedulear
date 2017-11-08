@@ -3,7 +3,6 @@ from openpyxl import *
 import sys, re
 import json
 
-
 def get_merged(sheet, cell):
 	global last_merged_range
 
@@ -45,12 +44,10 @@ def getCol(room_row, col_letter):
 
 	for col in range(room_row, ws.max_row - 2):
 		if (passed_time > 0):
-			data_cell = get_merged(ws, ws[col_letter][col - 1]) 
+			data_cell = str(get_merged(ws, ws[col_letter][col - 1]))
 
 			if (data_cell != ''):
 				col_data[days[passed_days]][pairs[passed_time - 1]].append(data_cell)
-				#print(str(col) + ' ' +  days[passed_days] + ' ' + pairs[passed_time - 1][0] + ' ' if data_cell == None 
-				#	else str(col) + ' ' +  days[passed_days] + ' ' + pairs[passed_time - 1][0] + ' ' + data_cell)
 			two_pairs += 1
 			if (two_pairs == 4):
 				two_pairs = 0
@@ -80,21 +77,9 @@ def parse():
 
 	row_data = getRow(rooms_row, rooms_letter)
 	room_data = {}
-	for r in row_data:
+	for r in row_data[:1]:
 		col_letter = utils.get_column_letter(row_data.index(r) + room_letter_shift)
 		col_data = getCol(room_row, col_letter)
 		room_data[r] = col_data
-	#if (room_number in row_data):
-	#	col_letter = utils.get_column_letter(row_data.index(room_number) + room_letter_shift)
-	#	a = getCol(room_row, col_letter)
-	#	j = json.dumps(a)
-		#f.write(j)		
-	#else:
-	#	a = {}
-	#	j = json.dumps(a)
-		#f.write(j)
 
 	return room_data
-
-#rd = parse()
-#j = json.dumps(rd['D738'])	
