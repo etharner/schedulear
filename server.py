@@ -30,6 +30,10 @@ def schedule_repr(key, action):
 	if (action == 'event'):
 		if (key == 'A841'):
 			text = "{Событие: Хакатон}"			
+	if (action == 'rate'):
+		if (key == 'A941'):
+			p = {'photo': 'https://i.imgur.com/l1RuzcX.png', 'rate': '☆☆☆☆☆'}
+			text = json.loads(json.dumps(p, ensure_ascii=False).encode('utf8').decode('utf8'))
 
 	return {
 		'url': request.host_url.rstrip('/') + url_for('schedule', key=key, action=action),
@@ -48,4 +52,3 @@ def schedule(key, action):
 		return schedule_repr(key, action)
 	else:
 		return number_error(key)
-		
