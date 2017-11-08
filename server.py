@@ -32,7 +32,7 @@ def schedule_repr(key, action):
 			text = "{Событие: Хакатон}"			
 	if (action == 'rate'):
 		if (key == 'A941'):
-			p = {'photo': 'https://i.imgur.com/l1RuzcX.png', 'rate': '☆☆☆☆☆'}
+			p = {'photo': 'https://i.imgur.com/l1RuzcX.png', 'rate': '☆☆☆☆☆', 'name': 'Анисимов Никита Юрьевич'}
 			text = json.loads(json.dumps(p, ensure_ascii=False).encode('utf8').decode('utf8'))
 
 	return {
