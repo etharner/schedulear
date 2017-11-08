@@ -10,7 +10,7 @@ rd = parse()
 def schedule_repr(key):
 	text = "{}"
 	if (key in rd):
-		text = json.loads(json.dumps(rd['D738'], ensure_ascii=False).encode('utf8').decode('utf8'))
+		text = json.loads(json.dumps(rd[key], ensure_ascii=False).encode('utf8').decode('utf8'))
 	return {
 		'url': request.host_url.rstrip('/') + url_for('schedule', key=key),
 		'text': text
