@@ -65,7 +65,7 @@ def getCol(room_row, col_letter):
 
 	return col_data	
 
-def parse(room_number):
+def parse():
 	global ws, last_merged_range 
 	wb = load_workbook('rooms.xlsx')
 	sheets = wb.get_sheet_names()
@@ -78,17 +78,23 @@ def parse(room_number):
 
 	last_merged_range = []
 
-	f = open('room.json', 'w')
-
 	row_data = getRow(rooms_row, rooms_letter)
-	if (room_number in row_data):
-		col_letter = utils.get_column_letter(row_data.index(room_number) + room_letter_shift)
-		a = getCol(room_row, col_letter)
-		j = json.dumps(a)
+	room_data = {}
+	for r in row_data:
+		col_letter = utils.get_column_letter(row_data.index(r) + room_letter_shift)
+		col_data = getCol(room_row, col_letter)
+		room_data[r] = col_data
+	#if (room_number in row_data):
+	#	col_letter = utils.get_column_letter(row_data.index(room_number) + room_letter_shift)
+	#	a = getCol(room_row, col_letter)
+	#	j = json.dumps(a)
 		#f.write(j)		
-	else:
-		a = {}
-		j = json.dumps(a)
+	#else:
+	#	a = {}
+	#	j = json.dumps(a)
 		#f.write(j)
 
-	return j
+	return room_data
+
+#rd = parse()
+#j = json.dumps(rd['D738'])	
