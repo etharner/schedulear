@@ -77,7 +77,7 @@ def parse():
 
 	row_data = getRow(rooms_row, rooms_letter)
 	room_data = {}
-	for r in row_data[:1]:
+	for r in row_data:
 		col_letter = utils.get_column_letter(row_data.index(r) + room_letter_shift)
 		col_data = getCol(room_row, col_letter)
 		room_data[r] = col_data
