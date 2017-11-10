@@ -12,7 +12,7 @@ def schedule_repr(key, action):
 
 	if (action == 'schedule'):
 		if (key in rd):
-			text = json.loads(json.dumps(rd[key], ensure_ascii=False).encode('utf8').decode('utf8'))
+			text = rd[key]
 	if (action == 'near'):
 		if (key == 'D734'):
 			text = 	"{'near': Мастер-класс\nперенесен в аудиторию D733\n⇦}"
@@ -33,11 +33,11 @@ def schedule_repr(key, action):
 	if (action == 'rate'):
 		if (key == 'A941'):
 			p = {'photo': 'https://i.imgur.com/l1RuzcX.png', 'rate': '☆☆☆☆☆', 'name': 'Анисимов Никита Юрьевич'}
-			text = json.loads(json.dumps(p, ensure_ascii=False).encode('utf8').decode('utf8'))
+			text = p
 
 	return {
 		'url': request.host_url.rstrip('/') + url_for('schedule', key=key, action=action),
-		'text': text
+		'text': json.loads(json.dumps(text, ensure_ascii=False).encode('utf8').decode('utf8'))
 	}
 
 def number_error(key):
